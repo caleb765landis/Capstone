@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MyGameLib",
+    name: "Server-Side",
     platforms: [
        .macOS(.v12)
     ],

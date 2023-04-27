@@ -27,6 +27,16 @@ struct Game_LongInfo: Identifiable, Codable {
     var platforms: [Platform]?
     let summary: String?
     let first_release_date: Double?
+    
+    init(id: Int, name: String, cover: Cover?, genres: [Genre]? = nil, platforms: [Platform]? = nil, summary: String?, first_release_date: Double?) {
+        self.id = id
+        self.name = name
+        self.cover = cover
+        self.genres = genres
+        self.platforms = platforms
+        self.summary = summary
+        self.first_release_date = first_release_date
+    }
 }
 
 class GameViewModel: ObservableObject {

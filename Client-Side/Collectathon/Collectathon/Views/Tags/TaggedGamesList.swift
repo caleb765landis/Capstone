@@ -12,116 +12,52 @@ struct TaggedGamesList: View {
     @StateObject var viewModel: TaggedGamesListViewModel
     @State private var searchText: String = ""
     
-//    public init(viewModel: TaggedGamesListViewModel) {
-//
-//    }
-    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.games) { game in
-                    NavigationLink(destination: Game(viewModel: GameViewModel(game.id))) {
-                        //                    NavigationLink(destination: Game()) {
-                        HStack {
-                            AsyncImage(url: URL(string: game.cover.url)!, content: { image in
-                                image.resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(maxWidth: 100)
-                            }, placeholder: {
-                                ProgressView()
-                            })
-                            Text(game.name)
+        ZStack {
+            Color.blue
+                .opacity(0.25)
+                .ignoresSafeArea()
+            
+            VStack {
+                List {
+                    ForEach(viewModel.games) { game in
+                        NavigationLink(destination: Game(viewModel: GameViewModel(game.id)))
+                        {
+                            HStack {
+                                AsyncImage(url: URL(string: game.cover.url)!, content: { image in
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 100, maxHeight: 130)
+                                }, placeholder: {
+                                    Rectangle().fill(.gray)
+                                        .frame(width: 100, height: 130)
+                                })
+                                Text(game.name)
+                            } // End HStack
+                        } // End Navigation Link
+                    } // end For Each
+                } // end List
+                .listStyle(.plain)
+//                    .searchable(text: $searchText)
+                .onChange(of: searchText) { value in
+                    Task {
+                        if !value.isEmpty &&  value.count > 3 {
+                            try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
+                        } else {
+                            viewModel.games.removeAll()
                         }
                     }
-                }
-            }.listStyle(.plain)
-            .searchable(text: $searchText)
-            .onChange(of: searchText) { value in
-                async {
-                    if !value.isEmpty &&  value.count > 3 {
-                        try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
-                    } else {
-                        viewModel.games.removeAll()
-                    }
-                }
-            }
+                } // end on change
+            } // End VStack
             .navigationTitle(viewModel.tag.tagName)
-        }
-    }
-}
-
-    
-//    @StateObject private var viewModel = TagsListViewModel()
-//
-//    @State private var showingAddModal = false
-//    @State private var busy = false
-//    @State private var errorMessage: String?
-//
-//    var body: some View {
-//        NavigationView {
-//            ZStack {
-//                VStack {
-//                    if let errorMessage = errorMessage {
-//                        Text(errorMessage)
-//                            .foregroundColor(.red)
-//                    }
-//
-//                    List {
-//                        ForEach(viewModel.tags) { tag in
-//
-//                            // Each element in the list is a link that, if clicked, will open the view/update/delete
-//                            // view for the corresponding kitten.
-//                            NavigationLink(
-//                                destination: ViewUpdateDeleteKitten(
-//                                    viewModel: ViewUpdateDeleteKittenViewModel(currentKitten: kitten)
-//                                )
-//                            ) {
-//                                Text(tag.tagName)
-//                                    .font(.title3)
-//                            } // end NavigationLink
-//
-//                        }
-//                    }
-//                    .refreshable {
-//                        fetchTags()
-//                    }
-//
-//
-////                    Image(systemName: "globe")
-////                        .imageScale(.large)
-////                        .foregroundColor(.accentColor)
-////                    Text("Hello, world!")
-////                    .padding()
-//                } // end VStack
-//                if busy {
-//                    ProgressView()
-//                } // end if busy
-//            } // end ZStack
-//            // When the view appears, retrieve an updated list of kittens.
-//            .onAppear(perform: fetchTags)
-//            .navigationBarTitle("Todos", displayMode: .inline)
-//        } // end NavigationView
-//        .navigationViewStyle(StackNavigationViewStyle())
-//    } // end body
-    
-//    private func fetchTags() {
-//        self.busy = true
-//        self.errorMessage = nil
-//        Task {
-//            do {
-//                try await viewModel.fetchTags()
-//                busy = false
-//            } catch {
-//                busy = false
-//                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
-//            }
-//        } // end task
-//    } // end fetch tags
+        } // End ZStack
+    } // End body
+} // End Tagged Games List
 
 struct TaggedGamesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TaggedGamesList(viewModel: TaggedGamesListViewModel(currentTag: Tag(id: "0", userID: "1", tagName: "Collection")))
+            TaggedGamesList(viewModel: TaggedGamesListViewModel(currentTag: Tag(id: "319AF6AD-D84A-4BEE-981B-4E392B878D2A", userID: "E4D4CBE6-B620-4822-A6C2-D9F79C6A3BDC", tagName: "Collection")))
         }
     }
 }
