@@ -17,29 +17,38 @@ struct ContentView: View {
     
     var body: some View {
         
-//        TabView(selection: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Selection@*/.constant(1)/*@END_MENU_TOKEN@*/) {
-        TabView() {
+        VStack {
+//            Text("Collectathon")
+//                .bold()
+//                .padding()
             
-            Explore()
-                .tabItem {
-                    Label("Explore", systemImage: "square.split.2x2.fill")
-                }
-//              .badge(2)
-            
-            
-//            list.bullet.rectangle
-            
-            TagsList()
-                .tabItem {
-                    Label("Lists", systemImage: "list.bullet.rectangle")
-                }
-            
-            Todos()
-                .tabItem {
-                    Label("Profile", systemImage: "person.crop.circle.fill")
-                }
-//              .badge("!")
+            TabView() {
+                
+                Explore()
+                    .tabItem {
+                        Label("Explore", systemImage: "square.split.2x2.fill")
+                    }
+                //              .badge(2)
+                
+                
+                //            list.bullet.rectangle
+                
+                TagsList()
+                    .tabItem {
+                        Label("Lists", systemImage: "list.bullet.rectangle")
+                    }
+                
+                Profile()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle.fill")
+                    }
+                //              .badge("!")
+            }
         }
+        .background(
+            .blue
+            .opacity(0.25)
+        )
         
     } // end body
     

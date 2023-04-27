@@ -8,15 +8,29 @@
 import SwiftUI
 
 struct GameTags: View {
-    @State private var vibrateOnRing = false
+    @State private var inCollection = false
     
     var body: some View {
-        VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (alignment: .center){
             
-            Toggle("Vibrate on Ring", isOn: $vibrateOnRing)
+            HStack (alignment: .center) {
+                Spacer()
+                Text("Tags")
+                    .font(.largeTitle)
+                    .bold()
+                Spacer()
+            }
+            Spacer(minLength: 10)
+            
+            HStack(alignment: .center) {
+                Toggle(isOn: $inCollection) {
+                    Text("Collection")
+                    //                    .padding()
+                }
+                .padding(.horizontal, 80)
+            } // End HStack
         } // end VStack
-        .padding()
+//        .padding()
     } // end body
 } // end GameTags
 

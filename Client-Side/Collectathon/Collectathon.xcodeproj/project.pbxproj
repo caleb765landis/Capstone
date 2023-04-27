@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081647DD29FB0C3700E70EEB /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081647DC29FB0C3700E70EEB /* Profile.swift */; };
 		086B29C029F9F2F900D5FD96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086B29BF29F9F2F900D5FD96 /* Assets.xcassets */; };
 		086B29C329F9F2F900D5FD96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086B29C229F9F2F900D5FD96 /* Preview Assets.xcassets */; };
 		086B29EF29F9F36300D5FD96 /* CollectathonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B29EE29F9F36300D5FD96 /* CollectathonApp.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081647DC29FB0C3700E70EEB /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Game/Profile.swift; sourceTree = "<group>"; };
 		086B29B829F9F2F700D5FD96 /* Collectathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collectathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086B29BF29F9F2F900D5FD96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		086B29C229F9F2F900D5FD96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				086B2A0229F9F38200D5FD96 /* ContentView.swift */,
 				086B2A0329F9F38200D5FD96 /* Explore.swift */,
+				081647DC29FB0C3700E70EEB /* Profile.swift */,
 				08B1287829FAE22600E64AB9 /* Game */,
 				086B2A0729F9F38300D5FD96 /* Tags */,
 				086B2A0429F9F38300D5FD96 /* Extra References */,
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				086B29FC29F9F37700D5FD96 /* ExploreListViewModel.swift in Sources */,
+				081647DD29FB0C3700E70EEB /* Profile.swift in Sources */,
 				086B29EF29F9F36300D5FD96 /* CollectathonApp.swift in Sources */,
 				086B29FA29F9F37700D5FD96 /* TodosListViewModel.swift in Sources */,
 				086B29FD29F9F37700D5FD96 /* Models.swift in Sources */,

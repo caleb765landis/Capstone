@@ -26,6 +26,7 @@ struct TagsList: View {
                     if let errorMessage = errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
+                            .padding()
                     }
                     
                     List {
