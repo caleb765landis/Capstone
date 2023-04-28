@@ -19,12 +19,18 @@ struct TaggedGameController: RouteCollection {
         taggedGame.group(":gameID") { taggedGame in
             taggedGame.get(use: show)
 //            taggedGame.put(use: put)
-            taggedGame.delete(use: delete)
+//            taggedGame.delete(use: delete)
         }
         
         taggedGame.group("byTag", ":tagID") { taggedGame in
             taggedGame.get(use: showByTag)
 //            taggedGame.put(use: put)
+        }
+        
+        taggedGame.group("taggedGames", "byTagAndGame", ":tagID:gameID") { taggedGame in
+//            taggedGame.get(use: showByTagAndGame)
+//            taggedGame.put(use: put)
+            taggedGame.delete(use: delete)
         }
         
 //        let taggedGameForUser = routes.grouped("taggedGames", "forUser")
@@ -53,6 +59,14 @@ struct TaggedGameController: RouteCollection {
         try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).all()
     }
     
+    func showByTagAndGame(req: Request) async throws -> [TaggedGame] {
+//        guard let taggedGame = try await TaggedGame.find(req.parameters.get("gameID"), on: req.db) else {
+//            throw Abort(.notFound)
+//        }
+//        return taggedGame
+        try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).filter(\.$gameID == req.parameters.get("gameID")!).all()
+    }
+    
 //    func showUserTaggedGames(req: Request) async throws -> [TaggedGame] {
 //        try await TaggedGame.query(on: req.db).filter(\.$userID == req.parameters.get("userID")!).all()
 //    }
@@ -77,10 +91,18 @@ struct TaggedGameController: RouteCollection {
 //    }
 
     func delete(req: Request) async throws -> HTTPStatus {
-        guard let taggedGame = try await TaggedGame.find(req.parameters.get("taggedGameID"), on: req.db) else {
-            throw Abort(.notFound)
-        }
-        try await taggedGame.delete(on: req.db)
+//        guard let taggedGame = try await TaggedGame.find(req.parameters.get("taggedGameID"), on: req.db) else {
+//            throw Abort(.notFound)
+//        }
+//        try await taggedGame.delete(on: req.db)
+//        return .noContent
+        
+        print(req.parameters.get("tagID")!)
+        print(req.parameters.get("gameID")!)
+        
+//        let games = try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).filter(\.$gameID == req.parameters.get("gameID")!).all()
+//
+//        try await games[0].delete(on: req.db)
         return .noContent
     }
 }

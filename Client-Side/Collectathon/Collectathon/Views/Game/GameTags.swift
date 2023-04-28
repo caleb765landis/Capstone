@@ -35,7 +35,7 @@ struct GameTags: View {
                         if isTagged {
                             addGame(viewModel.tags[index].tagID)
                         } else {
-                            
+                            deleteGame(viewModel.tags[index].tagID)
                         }
                     }
                     .padding(.horizontal, 80)
@@ -71,10 +71,27 @@ struct GameTags: View {
         }
     }
     
+    private func deleteGame(_ tagID: String) {
+        Task {
+            do {
+                try await deleteTaggedGame(tagID)
+            } catch {
+                
+            }
+        }
+    }
+    
     private func addTaggedGame(_ tagID: String) async throws {
         let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
         
         try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
+    }
+    
+    private func deleteTaggedGame(_ tagID: String) async throws {
+//        let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
+//
+//        try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
+        try await HTTP.delete(url: URL(string: "http://127.0.0.1:8080/taggedGames/byTagandGame?tagID=\(tagID)&gameID=\(viewModel.gameID)")!)
     }
     
     
