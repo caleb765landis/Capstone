@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GameTags: View {
     
+    var gameName: String
+    var coverURL: String
     @StateObject var viewModel: GameTagsViewModel
     
     var body: some View {
@@ -31,7 +33,7 @@ struct GameTags: View {
                     }
                     .onChange(of: viewModel.tags[index].isTagged) { isTagged in
                         if isTagged {
-                            
+                            addGame(viewModel.tags[index].tagID)
                         } else {
                             
                         }
@@ -59,10 +61,28 @@ struct GameTags: View {
         } // end task
     } // end fetchGame
     
+    private func addGame(_ tagID: String) {
+        Task {
+            do {
+                try await addTaggedGame(tagID)
+            } catch {
+                
+            }
+        }
+    }
+    
+    private func addTaggedGame(_ tagID: String) async throws {
+        let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
+        
+        try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
+    }
+    
+    
+    
 } // end GameTags
 
 struct GameTags_Previews: PreviewProvider {
     static var previews: some View {
-        GameTags(viewModel: GameTagsViewModel(740))
+        GameTags(gameName: "Halo: Combat Evolved", coverURL: "//images.igdb.com/igdb/image/upload/t_thumb/co2r2r.jpg", viewModel: GameTagsViewModel(740))
     }
 }

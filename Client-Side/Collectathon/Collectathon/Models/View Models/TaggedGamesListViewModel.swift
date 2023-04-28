@@ -16,19 +16,28 @@ class TaggedGamesListViewModel: ObservableObject {
     /// The initial kitten this view is created with.
     let tag: Tag
     
-    @Published var games = [Game_ShortInfo]()
+    @Published var games = [TaggedGameList]()
 
     init(currentTag: Tag) {
         self.tag = currentTag
     }
     
-    func search(name: String) async throws {
-        let games = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/IGDBGames/shortInfo/\(name)")!, dataType: [Game_ShortInfo].self)
+    func fetchGames() async throws {
+        let games = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/taggedGames/byTag/\(tag.id)")!, dataType: [TaggedGameList].self)
         
+        // we do this on the main queue so that when the value is updated the view will automatically be refreshed.
         DispatchQueue.main.async {
             self.games = games
         }
     }
+    
+//    func search(name: String) async throws {
+//        let games = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/IGDBGames/shortInfo/\(name)")!, dataType: [Game_ShortInfo].self)
+//        
+//        DispatchQueue.main.async {
+//            self.games = games
+//        }
+//    }
 
     /// Sends a request to update this kitten to the backend.
 //    func updateKitten() async throws {

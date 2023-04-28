@@ -17,6 +17,9 @@ class GameTagsViewModel: ObservableObject {
 
     init(_ currentGameID: Int) {
         self.gameID = currentGameID
+//        self.tagID = currentTagID
+//        self.gameName = gameName
+//        self.coverURL = coverURL
     }
     
     func fetchTags() async throws {

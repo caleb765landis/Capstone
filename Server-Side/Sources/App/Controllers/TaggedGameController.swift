@@ -15,10 +15,16 @@ struct TaggedGameController: RouteCollection {
         
         taggedGame.get(use: index)
         taggedGame.post(use: create)
+        
         taggedGame.group(":gameID") { taggedGame in
             taggedGame.get(use: show)
 //            taggedGame.put(use: put)
             taggedGame.delete(use: delete)
+        }
+        
+        taggedGame.group("byTag", ":tagID") { taggedGame in
+            taggedGame.get(use: showByTag)
+//            taggedGame.put(use: put)
         }
         
 //        let taggedGameForUser = routes.grouped("taggedGames", "forUser")
@@ -37,6 +43,14 @@ struct TaggedGameController: RouteCollection {
 //        }
 //        return taggedGame
         try await TaggedGame.query(on: req.db).filter(\.$gameID == req.parameters.get("gameID")!).all()
+    }
+    
+    func showByTag(req: Request) async throws -> [TaggedGame] {
+//        guard let taggedGame = try await TaggedGame.find(req.parameters.get("gameID"), on: req.db) else {
+//            throw Abort(.notFound)
+//        }
+//        return taggedGame
+        try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).all()
     }
     
 //    func showUserTaggedGames(req: Request) async throws -> [TaggedGame] {

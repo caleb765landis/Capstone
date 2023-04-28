@@ -21,10 +21,10 @@ struct TaggedGamesList: View {
             VStack {
                 List {
                     ForEach(viewModel.games) { game in
-                        NavigationLink(destination: Game(viewModel: GameViewModel(game.id)))
+                        NavigationLink(destination: Game(viewModel: GameViewModel(game.gameID)))
                         {
                             HStack {
-                                AsyncImage(url: URL(string: game.cover.url)!, content: { image in
+                                AsyncImage(url: URL(string: game.coverURL)!, content: { image in
                                     image.resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(maxWidth: 100, maxHeight: 130)
@@ -32,26 +32,48 @@ struct TaggedGamesList: View {
                                     Rectangle().fill(.gray)
                                         .frame(width: 100, height: 130)
                                 })
-                                Text(game.name)
+                                Text(game.gameName)
                             } // End HStack
                         } // End Navigation Link
                     } // end For Each
                 } // end List
-                .listStyle(.plain)
-//                    .searchable(text: $searchText)
-                .onChange(of: searchText) { value in
-                    Task {
-                        if !value.isEmpty &&  value.count > 3 {
-                            try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
-                        } else {
-                            viewModel.games.removeAll()
-                        }
-                    }
-                } // end on change
+                .listStyle(.sidebar)
+                .scrollContentBackground(.hidden)
+                .refreshable {
+                    fetchGames()
+                }
+//                .searchable(text: $searchText)
+//                .onChange(of: searchText) { value in
+//                    Task {
+//                        if !value.isEmpty &&  value.count > 3 {
+//                            try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
+//                        } else {
+//                            viewModel.games.removeAll()
+//                        }
+//                    }
+//                } // end on change
             } // End VStack
             .navigationTitle(viewModel.tag.tagName)
+            .onAppear {
+                fetchGames()
+            }
         } // End ZStack
     } // End body
+    
+    private func fetchGames() {
+        //        self.busy = true
+        //        self.errorMessage = nil
+        Task {
+            do {
+                try await viewModel.fetchGames()
+                //                busy = false
+            } catch {
+                //                busy = false
+                //                errorMessage = "Failed to fetch explore games: \(error.localizedDescription)"
+            }
+        } // end task
+    } // end fetch games
+    
 } // End Tagged Games List
 
 struct TaggedGamesList_Previews: PreviewProvider {

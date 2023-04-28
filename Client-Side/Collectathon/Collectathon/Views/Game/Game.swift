@@ -103,7 +103,7 @@ struct Game: View {
                             if currentBodyView == "About" {
                                 About(viewModel: self.viewModel)
                             } else {
-                                GameTags(viewModel: GameTagsViewModel( self.viewModel.gameID))
+                                GameTags(gameName: self.viewModel.game!.name, coverURL: self.viewModel.game!.cover!.url, viewModel: GameTagsViewModel(self.viewModel.gameID))
                             }
                             
                         } // end VStack

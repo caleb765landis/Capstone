@@ -35,7 +35,15 @@ public struct Tag: Identifiable, Codable {
     }
 }
 
-public struct TaggedGame: Identifiable, Codable {
+public struct TaggedGame: Codable {
+//    public var id: String
+    public var tagID: String
+    public var gameID: Int
+    public var coverURL: String
+    public var gameName: String
+}
+
+public struct TaggedGameList: Identifiable, Codable {
     public var id: String
     public var tagID: String
     public var gameID: Int
