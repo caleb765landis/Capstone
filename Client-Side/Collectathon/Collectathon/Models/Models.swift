@@ -35,22 +35,34 @@ public struct Tag: Identifiable, Codable {
     }
 }
 
-
-public struct TagWithBool: Identifiable, Codable {
+public struct TaggedGame: Identifiable, Codable {
     public var id: String
-    public var userID: String
+    public var tagID: String
+    public var gameID: Int
+    public var coverURL: String
+    public var gameName: String
+}
+
+
+public struct TagWithBool: Identifiable {
+    public var id: Int
+    public var tagID: String
+//    public var gameID: Int
     public var tagName: String
     public var isTagged: Bool
 
     public init(
-        id: String,
-        userID: String,
-        tagName: String
+        id: Int,
+        tagID: String,
+//        gameID: Int,
+        tagName: String,
+        isTagged: Bool
     ) {
         self.id = id
-        self.userID = userID
+        self.tagID = tagID
+//        self.gameID = gameID
         self.tagName = tagName
-        self.isTagged = false
+        self.isTagged = isTagged
     }
 }
 

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GameTags: View {
-    @State private var inCollection = false
+    
+    @StateObject var viewModel: GameTagsViewModel
     
     var body: some View {
         VStack (alignment: .center){
@@ -20,22 +21,48 @@ struct GameTags: View {
                     .bold()
                 Spacer()
             }
-            Spacer(minLength: 10)
             
-            HStack(alignment: .center) {
-                Toggle(isOn: $inCollection) {
-                    Text("Collection")
-                    //                    .padding()
-                }
-                .padding(.horizontal, 80)
-            } // End HStack
+            ForEach(viewModel.tags.indices, id: \.self) { index in
+//                Text(tag.tagName)
+                HStack(alignment: .center) {
+                    Toggle(isOn: $viewModel.tags[index].isTagged) {
+                        Text(viewModel.tags[index].tagName)
+                            .bold()
+                    }
+                    .onChange(of: viewModel.tags[index].isTagged) { isTagged in
+                        if isTagged {
+                            
+                        } else {
+                            
+                        }
+                    }
+                    .padding(.horizontal, 80)
+                } // End HStack
+            } // end for each
         } // end VStack
-//        .padding()
+        .onAppear {
+            fetchTags()
+        }
     } // end body
+    
+    private func fetchTags() {
+//        self.busy = true
+//        self.errorMessage = nil
+        Task {
+            do {
+                try await viewModel.fetchTags()
+//                busy = false
+            } catch {
+//                busy = false
+//                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
+            }
+        } // end task
+    } // end fetchGame
+    
 } // end GameTags
 
 struct GameTags_Previews: PreviewProvider {
     static var previews: some View {
-        GameTags()
+        GameTags(viewModel: GameTagsViewModel(740))
     }
 }
