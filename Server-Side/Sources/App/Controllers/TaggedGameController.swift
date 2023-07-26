@@ -27,8 +27,8 @@ struct TaggedGameController: RouteCollection {
 //            taggedGame.put(use: put)
         }
         
-        taggedGame.group("taggedGames", "byTagAndGame", ":tagID:gameID") { taggedGame in
-//            taggedGame.get(use: showByTagAndGame)
+        taggedGame.group("byTagAndGame", ":tagID", ":gameID") { taggedGame in
+            taggedGame.get(use: showByTagAndGame)
 //            taggedGame.put(use: put)
             taggedGame.delete(use: delete)
         }
@@ -97,12 +97,16 @@ struct TaggedGameController: RouteCollection {
 //        try await taggedGame.delete(on: req.db)
 //        return .noContent
         
-        print(req.parameters.get("tagID")!)
-        print(req.parameters.get("gameID")!)
+//        print("here")
+//        print(req.parameters.get("tagID")!)
+//        print(req.parameters.get("gameID")!)
         
-//        let games = try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).filter(\.$gameID == req.parameters.get("gameID")!).all()
-//
+        let games = try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).filter(\.$gameID == req.parameters.get("gameID")!).delete()
+        
+//        print(games)
+
 //        try await games[0].delete(on: req.db)
+        
         return .noContent
     }
 }

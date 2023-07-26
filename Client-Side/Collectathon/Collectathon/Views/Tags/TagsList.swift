@@ -66,7 +66,8 @@ struct TagsList: View {
                 busy = false
             } catch {
                 busy = false
-                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
+//                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
+                errorMessage = "Failed to fetch list of tags"
             }
         } // end task
     } // end fetch tags

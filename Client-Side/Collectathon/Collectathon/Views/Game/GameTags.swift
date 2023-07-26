@@ -91,7 +91,7 @@ struct GameTags: View {
 //        let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
 //
 //        try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
-        try await HTTP.delete(url: URL(string: "http://127.0.0.1:8080/taggedGames/byTagandGame?tagID=\(tagID)&gameID=\(viewModel.gameID)")!)
+        try await HTTP.delete(url: URL(string: "http://127.0.0.1:8080/taggedGames/byTagAndGame/\(tagID)/\(viewModel.gameID)")!)
     }
     
     

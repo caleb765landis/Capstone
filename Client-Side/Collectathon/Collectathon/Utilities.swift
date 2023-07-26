@@ -21,14 +21,6 @@ extension URLResponse {
     }
 }
 
-//extension Kitten {
-//    /// Corresponding URL for this kitten on the server.
-//    var resourceURL: URL {
-//        // Use the hexademical string representation of the `BSONObjectID`.
-//        HTTP.baseURL.appendingPathComponent(self.id.hex)
-//    }
-//}
-
 /// Errors that can result from HTTP requests.
 enum HTTPError: LocalizedError {
     case badResponse(code: Int)
