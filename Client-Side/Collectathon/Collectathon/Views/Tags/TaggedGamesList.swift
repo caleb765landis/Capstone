@@ -24,7 +24,7 @@ struct TaggedGamesList: View {
                         NavigationLink(destination: Game(viewModel: GameViewModel(game.gameID)))
                         {
                             HStack {
-                                AsyncImage(url: URL(string: game.coverURL)!, content: { image in
+                                AsyncImage(url: URL(string: "https:" + game.coverURL)!, content: { image in
                                     image.resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(maxWidth: 100, maxHeight: 130)

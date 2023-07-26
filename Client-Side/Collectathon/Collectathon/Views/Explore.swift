@@ -37,11 +37,12 @@ struct Explore: View {
                         ForEach(viewModel.games) { game in
                             NavigationLink(destination: Game(viewModel: GameViewModel(game.id))) {
                                 HStack {
-                                    AsyncImage(url: URL(string: game.cover.url)!, content: { image in
+                                    AsyncImage(url: URL(string: "https:" + game.cover.url)!, content: { image in
                                         image.resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(maxWidth: 100, maxHeight:130)
-                                    }, placeholder: {
+                                    }
+                                    , placeholder: {
 //                                        ProgressView()
                                         Rectangle().fill(.gray)
                                             .frame(width: 100, height: 130)

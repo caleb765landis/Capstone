@@ -42,15 +42,16 @@ struct Game: View {
                         
                         // Start game view header
                         HStack {
-                            if viewModel.game?.cover != nil {
-                               URLImage(urlString: viewModel.game!.cover!.url)
-                            } else {
-                                Image("")
-                                    .resizable()
-                    //                .aspectRatio(contentMode: .fill)
-                                    .background(Color.gray)
+                            AsyncImage(url: URL(string: "https:" + (viewModel.game?.cover?.url)!), content: { image in
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 100, maxHeight:130)
+                            }
+                            , placeholder: {
+//                                        ProgressView()
+                                Rectangle().fill(.gray)
                                     .frame(width: 100, height: 130)
-                            } // end if cover exists
+                            })
                             
                             VStack (alignment: .listRowSeparatorLeading) {
                                 Text(viewModel.game!.name)
