@@ -4,6 +4,8 @@
 //
 //  Created by Caleb Landis on 4/20/23.
 //
+//  Controller for API requests to get data from IGDB API
+//
 
 import Foundation
 import Fluent
@@ -30,13 +32,6 @@ struct IGDBGamesController: RouteCollection {
         let ratingHighLow = routes.grouped("IGDBGames", "ratingHighLow")
         ratingHighLow.get(use: getGamesRatingHighLow)
         
-        /*
-        auth.get(use: index)
-        auth.post(use: create)
-        auth.group(":todoID") { auth in
-            auth.delete(use: delete)
-        }
-        */
     }
     
     struct Cover: Codable {
@@ -113,9 +108,7 @@ struct IGDBGamesController: RouteCollection {
         let session = URLSession.shared
         
         let (data, _) = try await session.data(for: request)
-//        print (String(data: data, encoding: .utf8)!)
         return data
-//        return String(data: data, encoding: .utf8)!
     }
     
     func getDataStr() async throws -> String {
@@ -161,9 +154,6 @@ struct IGDBGamesController: RouteCollection {
         
         let (data, _) = try await session.data(for: requestHeader)
         
-//        let short = try JSONDecoder().decode([Game_ShortInfo].self, from: data)
-//        print(short)
-        
         return String(data: data, encoding: .utf8)!
     }
     
@@ -187,9 +177,6 @@ struct IGDBGamesController: RouteCollection {
         let session = URLSession.shared
         
         let (data, _) = try await session.data(for: requestHeader)
-        
-//        let long = try JSONDecoder().decode([Game_LongInfo].self, from: data)
-//        print(long)
         
         return String(data: data, encoding: .utf8)!
     }
@@ -215,30 +202,6 @@ struct IGDBGamesController: RouteCollection {
         
         let (data, _) = try await session.data(for: requestHeader)
         
-//        let long = try JSONDecoder().decode([Game_LongInfo].self, from: data)
-//        print(long)
-        
         return String(data: data, encoding: .utf8)!
     }
-    
-    /*
-     
-    func index(req: Request) async throws -> [Todo] {
-        try await Todo.query(on: req.db).all()
-    }
-
-    func create(req: Request) async throws -> Todo {
-        let todo = try req.content.decode(Todo.self)
-        try await todo.save(on: req.db)
-        return todo
-    }
-
-    func delete(req: Request) async throws -> HTTPStatus {
-        guard let todo = try await Todo.find(req.parameters.get("todoID"), on: req.db) else {
-            throw Abort(.notFound)
-        }
-        try await todo.delete(on: req.db)
-        return .noContent
-    }
-     */
 }

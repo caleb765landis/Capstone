@@ -1,6 +1,8 @@
 import Fluent
 import Vapor
 
+// registers API routes
+// used in configure.swift
 func routes(_ app: Application) throws {
     app.get { req async throws in
         try await req.view.render("index", ["title": "Hello Vapor!"])
@@ -11,7 +13,7 @@ func routes(_ app: Application) throws {
         return "Hello, \(name)!"
     }
     
-    try app.register(collection: TodoController())
+//    try app.register(collection: TodoController()) // Used for testing and learning
     try app.register(collection: UserController())
     try app.register(collection: TagController())
     try app.register(collection: TaggedGameController())

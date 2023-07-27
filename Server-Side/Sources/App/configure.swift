@@ -12,6 +12,7 @@ public func configure(_ app: Application) throws {
         connectionString: Environment.get("DATABASE_URL") ?? "mongodb://localhost:27017/vapor_database"
     ), as: .mongo)
 
+    // Migrates models to db when needed
     app.migrations.add(CreateTodo())
     app.migrations.add(CreateUser())
     app.migrations.add(CreateTag())

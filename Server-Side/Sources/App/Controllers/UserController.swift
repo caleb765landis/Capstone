@@ -4,6 +4,9 @@
 //
 //  Created by Caleb Landis on 4/20/23.
 //
+//  Built for future scalability. Currently using only one defalut user,
+//  but API has the capability to register more users in the future.
+//
 
 import Foundation
 import Fluent

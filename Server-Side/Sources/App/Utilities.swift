@@ -1,5 +1,16 @@
+//
+//  Utilities.swift
+//  Collectathon
+//
+//  Created by Kaitlin Mahar from MongoDB
+//  Found at https://github.com/mongodb/mongo-swift-driver/tree/main/Examples/FullStackSwiftExample
+//  The project found in this repository was heavily influenced by Mikaela Caron's YouTube series:
+//  https://www.youtube.com/playlist?list=PLMRqhzcHGw1Z7xNnqS_yUNm1k9dvq-HbM
+//
+//  Using this Utilities swift file made creating HTTP requests and encoding/decoding json much easier than me writing from scratch.
+//
+
 import Foundation
-//import Models
 import SwiftBSON
 
 extension URLResponse {
@@ -15,14 +26,6 @@ extension URLResponse {
         (self as! HTTPURLResponse).statusCode
     }
 }
-
-//extension Kitten {
-//    /// Corresponding URL for this kitten on the server.
-//    var resourceURL: URL {
-//        // Use the hexademical string representation of the `BSONObjectID`.
-//        HTTP.baseURL.appendingPathComponent(self.id.hex)
-//    }
-//}
 
 /// Errors that can result from HTTP requests.
 enum HTTPError: LocalizedError {
