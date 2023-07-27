@@ -9,14 +9,10 @@ import Foundation
 import SwiftUI
 
 struct Game: View {
-//    let gameID: Int
-//    @StateObject var game: Game_LongInfo
     @StateObject var viewModel: GameViewModel
-//
-//    @State private var showingAddModal = false
+
     @State private var busy = false
     @State private var errorMessage: String?
-    
     @State private var currentBodyView = "About"
     
     let gradient = LinearGradient(colors: [.blue, .white],
@@ -35,6 +31,7 @@ struct Game: View {
                         .foregroundColor(.red)
                 } // end error
                 
+                // Lots of possibilites for nil values from IGDB API
                 if viewModel.game != nil {
                     ScrollView {
                     
@@ -42,17 +39,18 @@ struct Game: View {
                         
                         // Start game view header
                         HStack {
+                            // Game Cover Image
                             AsyncImage(url: URL(string: "https:" + (viewModel.game?.cover?.url)!), content: { image in
                                 image.resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(maxWidth: 100, maxHeight:130)
                             }
                             , placeholder: {
-//                                        ProgressView()
                                 Rectangle().fill(.gray)
                                     .frame(width: 100, height: 130)
                             })
                             
+                            // Game title and release date
                             VStack (alignment: .listRowSeparatorLeading) {
                                 Text(viewModel.game!.name)
                                     .fontWeight(.heavy)
@@ -64,23 +62,22 @@ struct Game: View {
                                 } // end if release date exists
                             } // end VStack
                             .padding()
+                            
                         } // End HStack
                         .padding()
-    //                    .background(.ultraThickMaterial)
                         .edgesIgnoringSafeArea(.all)
                         // End Game Header
                     
                         // Body Game Info
-//                        VStack (alignment: .listRowSeparatorLeading) {
                         VStack(alignment: .leading) {
                             
                             Divider()
-                            
                             
                             HStack(alignment: .center) {
                                 
                                 Spacer()
                                 
+                                // About body view button
                                 Button(action: {currentBodyView = "About"}) {
                                     Text("About")
                                         .foregroundColor(.black)
@@ -89,6 +86,7 @@ struct Game: View {
                                 
                                 Spacer()
                                 
+                                // Tags body view button
                                 Button(action: {currentBodyView = "Tags"}) {
                                     Text("Tags")
                                         .foregroundColor(.black)
@@ -101,16 +99,19 @@ struct Game: View {
                             Divider()
                             Spacer(minLength: 20)
                             
+                            // Defaults to About view
                             if currentBodyView == "About" {
                                 About(viewModel: self.viewModel)
+                                
+                            // Otherwise gets all tags and each boolean value for this game
+                            // Boolean determines whether game is tagged to be in a list or not
                             } else {
                                 GameTags(gameName: self.viewModel.game!.name, coverURL: self.viewModel.game!.cover!.url, viewModel: GameTagsViewModel(self.viewModel.gameID))
-                            }
+                            } // end if
                             
                         } // end VStack
                         .padding()
                         // End body for game info
-                        
                     } // end Scroll View
                 } // end if game exists
                 
@@ -126,8 +127,8 @@ struct Game: View {
                 fetchGame()
             }
         } // end ZStack
+        
     } // end body
-    
     
     private func fetchGame() {
         self.busy = true
@@ -143,12 +144,10 @@ struct Game: View {
         } // end task
     } // end fetchGame
     
-    
 } // end Game View
-        
-        
 
-
+// Preview for Halo: Combat Evolved
+// IGDB ID: 740
 struct Game_Previews: PreviewProvider {
     static var previews: some View {
         Game(viewModel: GameViewModel(740))

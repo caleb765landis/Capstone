@@ -10,13 +10,9 @@ import SwiftUI
 
 public struct Todo: Identifiable, Codable {
     public var id: String
-    
-//    public let id: BSONObjectID
-    
     public let title: String
 
     public init(
-//        id: BSONObjectID = BSONObjectID(),
         id: String,
         title: String
     ) {

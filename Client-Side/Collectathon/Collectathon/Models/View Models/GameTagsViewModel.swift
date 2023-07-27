@@ -14,26 +14,20 @@ class GameTagsViewModel: ObservableObject {
     
     let gameID: Int
     
-
     init(_ currentGameID: Int) {
         self.gameID = currentGameID
-//        self.tagID = currentTagID
-//        self.gameName = gameName
-//        self.coverURL = coverURL
     }
     
     func fetchTags() async throws {
         // get Tags
         let tags = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/")!, dataType: [Tag].self)
         
-        
-        
         // get list of tagged games with this id
         let taggedGames = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/taggedGames/\(gameID)")!, dataType: [TaggedGame].self)
         
+        // get each tagged game's boolean values
         let tagsWithBools = try await getTagsWithBools(tags: tags, taggedGames: taggedGames)
         
-        // we do this on the main queue so that when the value is updated the view will automatically be refreshed.
         DispatchQueue.main.async {
             self.tags = tagsWithBools
         } // end dispatch

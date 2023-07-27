@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct Explore: View {
+    
+    // gradient settings for background if ever wanted
     let gradient = LinearGradient(colors: [.blue, .white],
                                       startPoint: .topLeading,
                                       endPoint: .bottomTrailing)
     
     @StateObject private var viewModel = ExploreListViewModel()
-    @State private var searchText: String = ""
     
-    @State private var showingAddModal = false
+    @State private var searchText: String = ""
     @State private var busy = false
     @State private var errorMessage: String?
     
@@ -51,8 +52,6 @@ struct Explore: View {
                                 } // End HStack
                             } // End NavigationLink
                         } // End For Each
-                        
-                        
                     } // End List
                     .scrollContentBackground(.hidden)
                     .listStyle(.sidebar)
@@ -68,7 +67,7 @@ struct Explore: View {
                                 viewModel.games.removeAll()
                                 fetchGames()
                             }
-                        }
+                        } // end Task
                     } // end on change
                     
                 } // end VStack
@@ -96,8 +95,6 @@ struct Explore: View {
             }
         } // end task
     } // end fetch games
-    
-    
     
 } // End Explore View
 

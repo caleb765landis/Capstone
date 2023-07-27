@@ -21,12 +21,10 @@
 		086B29FF29F9F37700D5FD96 /* TagsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B29F729F9F37700D5FD96 /* TagsListViewModel.swift */; };
 		086B2A0A29F9F38300D5FD96 /* TagsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0929F9F38300D5FD96 /* TagsList.swift */; };
 		086B2A0B29F9F38300D5FD96 /* Todos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0629F9F38300D5FD96 /* Todos.swift */; };
-		086B2A0C29F9F38300D5FD96 /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0529F9F38300D5FD96 /* Tabs.swift */; };
 		086B2A0D29F9F38300D5FD96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0229F9F38200D5FD96 /* ContentView.swift */; };
 		086B2A0E29F9F38300D5FD96 /* TaggedGamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0829F9F38300D5FD96 /* TaggedGamesList.swift */; };
 		086B2A0F29F9F38300D5FD96 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0129F9F38200D5FD96 /* Game.swift */; };
 		086B2A1029F9F38300D5FD96 /* Explore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2A0329F9F38200D5FD96 /* Explore.swift */; };
-		08B1287A29FAE24900E64AB9 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1287929FAE24900E64AB9 /* URLImage.swift */; };
 		08B1287C29FAF19100E64AB9 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1287B29FAF19100E64AB9 /* About.swift */; };
 		08B1287E29FAFBE800E64AB9 /* GameTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1287D29FAFBE800E64AB9 /* GameTags.swift */; };
 		08B1288029FB034600E64AB9 /* GameTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1287F29FB034600E64AB9 /* GameTagsViewModel.swift */; };
@@ -50,11 +48,9 @@
 		086B2A0129F9F38200D5FD96 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		086B2A0229F9F38200D5FD96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		086B2A0329F9F38200D5FD96 /* Explore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explore.swift; sourceTree = "<group>"; };
-		086B2A0529F9F38300D5FD96 /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		086B2A0629F9F38300D5FD96 /* Todos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todos.swift; sourceTree = "<group>"; };
 		086B2A0829F9F38300D5FD96 /* TaggedGamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedGamesList.swift; sourceTree = "<group>"; };
 		086B2A0929F9F38300D5FD96 /* TagsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsList.swift; sourceTree = "<group>"; };
-		08B1287929FAE24900E64AB9 /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		08B1287B29FAF19100E64AB9 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		08B1287D29FAFBE800E64AB9 /* GameTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTags.swift; sourceTree = "<group>"; };
 		08B1287F29FB034600E64AB9 /* GameTagsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTagsViewModel.swift; sourceTree = "<group>"; };
@@ -149,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				086B2A0629F9F38300D5FD96 /* Todos.swift */,
-				086B2A0529F9F38300D5FD96 /* Tabs.swift */,
 			);
 			path = "Extra References";
 			sourceTree = "<group>";
@@ -167,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				086B2A0129F9F38200D5FD96 /* Game.swift */,
-				08B1287929FAE24900E64AB9 /* URLImage.swift */,
 				08B1287B29FAF19100E64AB9 /* About.swift */,
 				08B1287D29FAFBE800E64AB9 /* GameTags.swift */,
 			);
@@ -202,7 +196,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					086B29B729F9F2F700D5FD96 = {
 						CreatedOnToolsVersion = 14.2;
@@ -251,7 +245,6 @@
 				086B29FD29F9F37700D5FD96 /* Models.swift in Sources */,
 				086B2A0E29F9F38300D5FD96 /* TaggedGamesList.swift in Sources */,
 				085DC3862A72D3E700AE97C0 /* ProfileViewModel.swift in Sources */,
-				086B2A0C29F9F38300D5FD96 /* Tabs.swift in Sources */,
 				086B2A0D29F9F38300D5FD96 /* ContentView.swift in Sources */,
 				086B2A0F29F9F38300D5FD96 /* Game.swift in Sources */,
 				086B2A1029F9F38300D5FD96 /* Explore.swift in Sources */,
@@ -264,7 +257,6 @@
 				086B2A0B29F9F38300D5FD96 /* Todos.swift in Sources */,
 				08B1287C29FAF19100E64AB9 /* About.swift in Sources */,
 				08B1288029FB034600E64AB9 /* GameTagsViewModel.swift in Sources */,
-				08B1287A29FAE24900E64AB9 /* URLImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +299,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -367,6 +360,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

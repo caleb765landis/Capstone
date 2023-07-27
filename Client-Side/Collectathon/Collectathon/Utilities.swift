@@ -2,7 +2,12 @@
 //  Utilities.swift
 //  Collectathon
 //
-//  Created by Caleb Landis on 4/19/23.
+//  Created by Kaitlin Mahar from MongoDB
+//  Found at https://github.com/mongodb/mongo-swift-driver/tree/main/Examples/FullStackSwiftExample
+//  The project found in this repository was heavily influenced by Mikaela Caron's YouTube series:
+//  https://www.youtube.com/playlist?list=PLMRqhzcHGw1Z7xNnqS_yUNm1k9dvq-HbM
+//
+//  Using this Utilities swift file made creating HTTP requests and encoding/decoding json much easier than me writing from scratch.
 //
 
 import Foundation

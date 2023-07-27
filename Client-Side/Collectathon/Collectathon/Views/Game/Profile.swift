@@ -10,7 +10,6 @@ import SwiftUI
 struct Profile: View {
     @StateObject private var viewModel = ProfileViewModel()
 
-    @State private var showingAddModal = false
     @State private var busy = false
     @State private var errorMessage: String?
     
@@ -22,14 +21,16 @@ struct Profile: View {
                 .ignoresSafeArea()
             
             VStack () {
-//                Spacer()
-                
                 HStack {
+                    
                     Spacer()
+                    
                     Text("Profile")
                         .font(.largeTitle)
                         .bold()
+                    
                     Spacer()
+                    
                 }
                 .padding()
                 
@@ -41,22 +42,23 @@ struct Profile: View {
                             .padding()
                     }
                     
-                        ForEach(viewModel.tags) { tag in
-//                            let count = await fetchCount(tagId: tag.id)
-                            
-                            Text(tag.tagName + ": " + String(tag.count))
-                                .font(.title3)
-                            
-                        }
+                    // List names and number of games tagged for each one
+                    ForEach(viewModel.tags) { tag in
+                        Text(tag.tagName + ": " + String(tag.count))
+                            .font(.title3)
+                        
+                    }
                     .scrollContentBackground(.hidden)
                     .refreshable {
                         fetchTags()
                     } // end refreshable list
+                    
                 } // end VStack
+                
                 if busy {
                     ProgressView()
                 } // end if busy
-//                Spacer()
+                
             } // end VStack
         } // end ZStack
         .onAppear(perform: fetchTags)
@@ -72,31 +74,12 @@ struct Profile: View {
                 busy = false
             } catch {
                 busy = false
-//                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
-                errorMessage = "Failed to fetch list of tags"
+                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
             }
         } // end task
     } // end fetch tags
     
-    private func fetchCount(tagId: String) async -> Int{
-//        let count = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/")!, dataType: Int)
-        
-        self.busy = true
-        self.errorMessage = nil
-        Task {
-            do {
-                let count = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/")!, dataType: Int.self)
-                busy = false
-            } catch {
-                busy = false
-                errorMessage = "Failed to fetch profile"
-            } // end catch
-        } // end task
-        
-        return 0
-    } // end fetchCount
-    
-} // end profile
+} // end Profile view
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {

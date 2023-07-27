@@ -10,20 +10,33 @@ import SwiftUI
 
 struct TaggedGamesList: View {
     @StateObject var viewModel: TaggedGamesListViewModel
+    
+    // Need to make lists searchable
     @State private var searchText: String = ""
+    @State private var busy = false
+    @State private var errorMessage: String?
     
     var body: some View {
+        
+        // Don't need Navigation View because this ZStack is already inside TagsList's Navigation View
         ZStack {
             Color.blue
                 .opacity(0.25)
                 .ignoresSafeArea()
             
             VStack {
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding()
+                }
+                
                 List {
                     ForEach(viewModel.games) { game in
                         NavigationLink(destination: Game(viewModel: GameViewModel(game.gameID)))
                         {
                             HStack {
+                                // Cover Image
                                 AsyncImage(url: URL(string: "https:" + game.coverURL)!, content: { image in
                                     image.resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -31,7 +44,9 @@ struct TaggedGamesList: View {
                                 }, placeholder: {
                                     Rectangle().fill(.gray)
                                         .frame(width: 100, height: 130)
-                                })
+                                }) // end AsyncImage
+                                
+                                // Game Title
                                 Text(game.gameName)
                             } // End HStack
                         } // End Navigation Link
@@ -42,16 +57,25 @@ struct TaggedGamesList: View {
                 .refreshable {
                     fetchGames()
                 }
-//                .searchable(text: $searchText)
-//                .onChange(of: searchText) { value in
-//                    Task {
-//                        if !value.isEmpty &&  value.count > 3 {
-//                            try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
-//                        } else {
-//                            viewModel.games.removeAll()
-//                        }
-//                    }
-//                } // end on change
+                
+                // TODO: Make List Searchable
+                /*
+                .searchable(text: $searchText)
+                .onChange(of: searchText) { value in
+                    Task {
+                        if !value.isEmpty {
+                            try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
+                        } else {
+                            viewModel.games.removeAll()
+                        }
+                    }
+                } // end on change
+                */
+                
+                if busy {
+                    ProgressView()
+                }
+                
             } // End VStack
             .navigationTitle(viewModel.tag.tagName)
             .onAppear {
@@ -61,21 +85,22 @@ struct TaggedGamesList: View {
     } // End body
     
     private func fetchGames() {
-        //        self.busy = true
-        //        self.errorMessage = nil
+        self.busy = true
+        self.errorMessage = nil
         Task {
             do {
                 try await viewModel.fetchGames()
-                //                busy = false
+                busy = false
             } catch {
-                //                busy = false
-                //                errorMessage = "Failed to fetch explore games: \(error.localizedDescription)"
+                busy = false
+                errorMessage = "Failed to fetch explore games: \(error.localizedDescription)"
             }
         } // end task
     } // end fetch games
     
 } // End Tagged Games List
 
+// Preview for 'Collection' tag for default user
 struct TaggedGamesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

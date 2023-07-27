@@ -16,21 +16,27 @@ struct GameTags: View {
     var body: some View {
         VStack (alignment: .center){
             
+            // Tags body title
             HStack (alignment: .center) {
+                
                 Spacer()
+                
                 Text("Tags")
                     .font(.largeTitle)
                     .bold()
+                
                 Spacer()
             }
             
+            // For each tag, get its state for if it is in each list or not
             ForEach(viewModel.tags.indices, id: \.self) { index in
-//                Text(tag.tagName)
                 HStack(alignment: .center) {
                     Toggle(isOn: $viewModel.tags[index].isTagged) {
                         Text(viewModel.tags[index].tagName)
                             .bold()
                     }
+                    
+                    // when toggle is tapped, add game to db if toggle is turned on, delete game if turned off
                     .onChange(of: viewModel.tags[index].isTagged) { isTagged in
                         if isTagged {
                             addGame(viewModel.tags[index].tagID)
@@ -47,56 +53,49 @@ struct GameTags: View {
         }
     } // end body
     
+    // TODO: Add better error handling for following functions
+    
     private func fetchTags() {
-//        self.busy = true
-//        self.errorMessage = nil
         Task {
             do {
                 try await viewModel.fetchTags()
-//                busy = false
-            } catch {
-//                busy = false
-//                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
-            }
+            } catch {}
         } // end task
     } // end fetchGame
     
+    // add game interface
+    // calls async function to actually add game to db
     private func addGame(_ tagID: String) {
         Task {
             do {
                 try await addTaggedGame(tagID)
-            } catch {
-                
-            }
+            } catch {}
         }
     }
     
+    // delete game interface
+    // calls async function to actually add game to db
     private func deleteGame(_ tagID: String) {
         Task {
             do {
                 try await deleteTaggedGame(tagID)
-            } catch {
-                
-            }
+            } catch {}
         }
     }
     
+    // Creates a temp TaggedGame and posts to my API
     private func addTaggedGame(_ tagID: String) async throws {
         let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
         
         try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
     }
     
+    // deletes game with this tag's ID and this game's ID using my API
     private func deleteTaggedGame(_ tagID: String) async throws {
-//        let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
-//
-//        try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
         try await HTTP.delete(url: URL(string: "http://127.0.0.1:8080/taggedGames/byTagAndGame/\(tagID)/\(viewModel.gameID)")!)
     }
     
-    
-    
-} // end GameTags
+} // end GameTags view
 
 struct GameTags_Previews: PreviewProvider {
     static var previews: some View {

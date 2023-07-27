@@ -11,7 +11,6 @@ import SwiftUI
 struct TagsList: View {
     @StateObject private var viewModel = TagsListViewModel()
 
-    @State private var showingAddModal = false
     @State private var busy = false
     @State private var errorMessage: String?
     
@@ -30,6 +29,9 @@ struct TagsList: View {
                     }
                     
                     List {
+                        // Currently this list of tags is static,
+                        // but it is designed so more tags can be created in the future.
+                        // Client-Side List Creation is next feature to add.
                         ForEach(viewModel.tags) { tag in
                             NavigationLink(
                                 destination: TaggedGamesList(
@@ -39,22 +41,23 @@ struct TagsList: View {
                                 Text(tag.tagName)
                                     .font(.title3)
                             } // end NavigationLink
-                            
-                        }
+                        } // end ForEach
                     } // end list
                     .scrollContentBackground(.hidden)
                     .refreshable {
                         fetchTags()
                     } // end refreshable list
                 } // end VStack
+                
                 if busy {
                     ProgressView()
                 } // end if busy
+                
             } // end ZStack
             .onAppear(perform: fetchTags)
             .navigationBarTitle("Lists")
         } // end NavigationView
-//        .navigationViewStyle(.stack)
+        
     } // end body
     
     private func fetchTags() {
@@ -66,8 +69,7 @@ struct TagsList: View {
                 busy = false
             } catch {
                 busy = false
-//                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
-                errorMessage = "Failed to fetch list of tags"
+                errorMessage = "Failed to fetch list of tags: \(error.localizedDescription)"
             }
         } // end task
     } // end fetch tags
