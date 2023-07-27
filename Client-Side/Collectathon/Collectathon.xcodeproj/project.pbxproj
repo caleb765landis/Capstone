@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		081647DD29FB0C3700E70EEB /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081647DC29FB0C3700E70EEB /* Profile.swift */; };
+		085DC3862A72D3E700AE97C0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085DC3852A72D3E600AE97C0 /* ProfileViewModel.swift */; };
 		086B29C029F9F2F900D5FD96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086B29BF29F9F2F900D5FD96 /* Assets.xcassets */; };
 		086B29C329F9F2F900D5FD96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086B29C229F9F2F900D5FD96 /* Preview Assets.xcassets */; };
 		086B29EF29F9F36300D5FD96 /* CollectathonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B29EE29F9F36300D5FD96 /* CollectathonApp.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		081647DC29FB0C3700E70EEB /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Game/Profile.swift; sourceTree = "<group>"; };
 		085DC3842A7184A600AE97C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		085DC3852A72D3E600AE97C0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		086B29B829F9F2F700D5FD96 /* Collectathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collectathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086B29BF29F9F2F900D5FD96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		086B29C229F9F2F900D5FD96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				086B29F529F9F37600D5FD96 /* GameViewModel.swift */,
 				086B29F729F9F37700D5FD96 /* TagsListViewModel.swift */,
 				08B1287F29FB034600E64AB9 /* GameTagsViewModel.swift */,
+				085DC3852A72D3E600AE97C0 /* ProfileViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				086B29FA29F9F37700D5FD96 /* TodosListViewModel.swift in Sources */,
 				086B29FD29F9F37700D5FD96 /* Models.swift in Sources */,
 				086B2A0E29F9F38300D5FD96 /* TaggedGamesList.swift in Sources */,
+				085DC3862A72D3E700AE97C0 /* ProfileViewModel.swift in Sources */,
 				086B2A0C29F9F38300D5FD96 /* Tabs.swift in Sources */,
 				086B2A0D29F9F38300D5FD96 /* ContentView.swift in Sources */,
 				086B2A0F29F9F38300D5FD96 /* Game.swift in Sources */,

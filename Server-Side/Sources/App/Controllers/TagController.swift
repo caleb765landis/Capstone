@@ -20,6 +20,10 @@ struct TagController: RouteCollection {
             tag.delete(use: delete)
         }
         
+        tag.group(":tagID", "count") { tag in
+            tag.get(use: getCount)
+        }
+        
         let tagForUser = routes.grouped("tags", "forUser")
         tagForUser.group(":userID") { tagForUser in
             tagForUser.get(use:showUserTags)
@@ -66,5 +70,9 @@ struct TagController: RouteCollection {
         }
         try await tag.delete(on: req.db)
         return .noContent
+    }
+    
+    func getCount(req: Request) async throws -> Int {
+        try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).count()
     }
 }

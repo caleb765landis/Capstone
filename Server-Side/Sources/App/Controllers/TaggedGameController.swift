@@ -18,25 +18,21 @@ struct TaggedGameController: RouteCollection {
         
         taggedGame.group(":gameID") { taggedGame in
             taggedGame.get(use: show)
-//            taggedGame.put(use: put)
-//            taggedGame.delete(use: delete)
         }
+        
         
         taggedGame.group("byTag", ":tagID") { taggedGame in
             taggedGame.get(use: showByTag)
-//            taggedGame.put(use: put)
+        }
+        
+        taggedGame.group("byTag", ":tagID", "count") { taggedGame in
+            taggedGame.get(use: getCount)
         }
         
         taggedGame.group("byTagAndGame", ":tagID", ":gameID") { taggedGame in
             taggedGame.get(use: showByTagAndGame)
-//            taggedGame.put(use: put)
             taggedGame.delete(use: delete)
         }
-        
-//        let taggedGameForUser = routes.grouped("taggedGames", "forUser")
-//        taggedGameForUser.group(":userID") { taggedGameForUser in
-//            taggedGameForUser.get(use:showUserTaggedGames)
-//        }
     }
     
     func index(req: Request) async throws -> [TaggedGame] {
@@ -49,6 +45,11 @@ struct TaggedGameController: RouteCollection {
 //        }
 //        return taggedGame
         try await TaggedGame.query(on: req.db).filter(\.$gameID == req.parameters.get("gameID")!).all()
+    }
+    
+    
+    func getCount(req: Request) async throws -> Int {
+        try await TaggedGame.query(on: req.db).filter(\.$tagID == req.parameters.get("tagID")!).count()
     }
     
     func showByTag(req: Request) async throws -> [TaggedGame] {

@@ -62,7 +62,7 @@ struct Explore: View {
                     }
                     .onChange(of: searchText) { value in
                         Task {
-                            if !value.isEmpty &&  value.count > 3 {
+                            if !value.isEmpty {
                                 try await viewModel.search(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
                             } else {
                                 viewModel.games.removeAll()

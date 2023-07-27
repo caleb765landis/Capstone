@@ -74,6 +74,18 @@ public struct TagWithBool: Identifiable {
     }
 }
 
+public struct TagWithCount: Identifiable {
+    public var id: String
+    public var tagName: String
+    public var count: Int
+    
+    public init(id: String, tagName: String, count: Int) {
+        self.id = id
+        self.tagName = tagName
+        self.count = count
+    }
+}
+
 //public struct TaggedGame: Identifiable, Codable {
 //    public var id: String
 //    public var userID: String
