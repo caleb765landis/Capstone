@@ -14,7 +14,7 @@ class ProfileViewModel: ObservableObject {
     
     func fetchTags() async throws {
         // lists of tags
-        let tags = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/")!, dataType: [Tag].self)
+        let tags = try await HTTP.get(url: URL(string: HTTP.baseURL + "/tags/")!, dataType: [Tag].self)
         
         // temporary array
         var tagsWithCount = [TagWithCount]()
@@ -31,7 +31,7 @@ class ProfileViewModel: ObservableObject {
     } // end fetchTags
     
     func getCounts(_ tag: Tag) async throws -> Int {
-        let count = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/\(tag.id)/count/")!, dataType: Int.self)
+        let count = try await HTTP.get(url: URL(string: HTTP.baseURL + "/tags/\(tag.id)/count/")!, dataType: Int.self)
         let _ = print(count)
         
         return count

@@ -13,7 +13,7 @@ class TagsListViewModel: ObservableObject {
     @Published var tags = [Tag]()
     
     func fetchTags() async throws {
-        let tags = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/")!, dataType: [Tag].self)
+        let tags = try await HTTP.get(url: URL(string: HTTP.baseURL + "/tags/")!, dataType: [Tag].self)
         
         DispatchQueue.main.async {
             self.tags = tags

@@ -13,7 +13,7 @@ class ExploreListViewModel: ObservableObject {
     @Published var games = [Game_ShortInfo]()
     
     func fetchGames() async throws {
-        let games = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/IGDBGames/ratingHighLow/")!, dataType: [Game_ShortInfo].self)
+        let games = try await HTTP.get(url: URL(string: HTTP.baseURL + "/IGDBGames/ratingHighLow/")!, dataType: [Game_ShortInfo].self)
         
         DispatchQueue.main.async {
             self.games = games
@@ -21,7 +21,7 @@ class ExploreListViewModel: ObservableObject {
     }
     
     func search(name: String) async throws {
-        let games = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/IGDBGames/shortInfo/\(name)")!, dataType: [Game_ShortInfo].self)
+        let games = try await HTTP.get(url: URL(string: HTTP.baseURL + "/IGDBGames/shortInfo/\(name)")!, dataType: [Game_ShortInfo].self)
         
         DispatchQueue.main.async {
             self.games = games

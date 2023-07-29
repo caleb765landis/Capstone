@@ -7,6 +7,17 @@ import Vapor
 public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+    
+    app.http.server.configuration.hostname = "0.0.0.0"
+    app.http.server.configuration.port = 8080
+
+    //      app.views.use(.leaf)
+
+    app.leaf.cache.isEnabled = app.environment.isRelease
+
+    app.leaf.configuration.rootDirectory = Bundle.main.bundlePath
+
+    app.routes.defaultMaxBodySize = "50MB"
 
     try app.databases.use(.mongo(
         connectionString: Environment.get("DATABASE_URL") ?? "mongodb://localhost:27017/vapor_database"

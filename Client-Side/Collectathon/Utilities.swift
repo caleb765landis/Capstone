@@ -43,9 +43,10 @@ enum HTTPError: LocalizedError {
 
 enum HTTP {
     /// Base URL where our application is running.
-    // Ok to force unwrap since we know this is a valid URL.
-    // swiftlint:disable:next force_unwrapping
-    static let baseURL = URL(string: "http://127.0.0.1:8080")!
+    static let baseURL = "http://10.0.0.134:8080"
+    
+    // Localhost base URL for local development
+//    static let baseURL = URL(string: "http://127.0.0.1:8080")!
 
     /// Supported HTTP methods.
     enum Method: String {

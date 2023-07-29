@@ -19,7 +19,7 @@ class GameViewModel: ObservableObject {
     
     func fetchGame() async throws {
         // Get first resut of game with this id
-        let game = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/IGDBGames/longInfo/\(self.gameID)")!, dataType: [Game_LongInfo].self)[0]
+        let game = try await HTTP.get(url: URL(string: HTTP.baseURL + "/IGDBGames/longInfo/\(self.gameID)")!, dataType: [Game_LongInfo].self)[0]
         
         DispatchQueue.main.async {
             self.game = game

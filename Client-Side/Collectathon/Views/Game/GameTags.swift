@@ -87,12 +87,12 @@ struct GameTags: View {
     private func addTaggedGame(_ tagID: String) async throws {
         let temp = TaggedGame(tagID: tagID, gameID: viewModel.gameID, coverURL: coverURL, gameName: gameName)
         
-        try await HTTP.post(url: URL(string: "http://127.0.0.1:8080/taggedGames")!, body: temp)
+        try await HTTP.post(url: URL(string: HTTP.baseURL + "/taggedGames")!, body: temp)
     }
     
     // deletes game with this tag's ID and this game's ID using my API
     private func deleteTaggedGame(_ tagID: String) async throws {
-        try await HTTP.delete(url: URL(string: "http://127.0.0.1:8080/taggedGames/byTagAndGame/\(tagID)/\(viewModel.gameID)")!)
+        try await HTTP.delete(url: URL(string: HTTP.baseURL + "/taggedGames/byTagAndGame/\(tagID)/\(viewModel.gameID)")!)
     }
     
 } // end GameTags view

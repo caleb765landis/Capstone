@@ -20,10 +20,10 @@ class GameTagsViewModel: ObservableObject {
     
     func fetchTags() async throws {
         // get Tags
-        let tags = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/tags/")!, dataType: [Tag].self)
+        let tags = try await HTTP.get(url: URL(string: HTTP.baseURL + "/tags/")!, dataType: [Tag].self)
         
         // get list of tagged games with this id
-        let taggedGames = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/taggedGames/\(gameID)")!, dataType: [TaggedGame].self)
+        let taggedGames = try await HTTP.get(url: URL(string: HTTP.baseURL + "/taggedGames/\(gameID)")!, dataType: [TaggedGame].self)
         
         // get each tagged game's boolean values
         let tagsWithBools = try await getTagsWithBools(tags: tags, taggedGames: taggedGames)

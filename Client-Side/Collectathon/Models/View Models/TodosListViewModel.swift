@@ -26,7 +26,7 @@ class TodosListViewModel: ObservableObject {
     @Published var todos = [Todo]()
     
     func fetchTodos() async throws {
-        let todos = try await HTTP.get(url: URL(string: "http://127.0.0.1:8080/todos/")!, dataType: [Todo].self)
+        let todos = try await HTTP.get(url: URL(string: HTTP.baseURL + "/todos/")!, dataType: [Todo].self)
         
         // we do this on the main queue so that when the value is updated the view will automatically be refreshed.
         DispatchQueue.main.async {
