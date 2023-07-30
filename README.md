@@ -12,32 +12,36 @@ I believe I was able to accomplish these goals successfully. Not only did I demo
 If you want to skip to how to run the application, follow the table of contents to the _Dependencies_ and _Building and Running the Application_ sections.
 
 ## Table of Contents
-[Features](https://github.com/caleb765landis/Capstone.git#Features)
-[Technologies Used](https://github.com/caleb765landis/Capstone.git#Technologies-Used)
-[Dependencies](https://github.com/caleb765landis/Capstone.git#Dependencies)
-[Building and Running the Application](https://github.com/caleb765landis/Capstone.git#Building-and-Running-the-Application)
-[Resources and Acknowledgements](https://github.com/caleb765landis/Capstone.git#Resources-and-Acknowledgements)
+- [Features](https://github.com/caleb765landis/Capstone.git#Features)
+- [Technologies Used](https://github.com/caleb765landis/Capstone.git#Technologies-Used)
+- [Dependencies](https://github.com/caleb765landis/Capstone.git#Dependencies)
+- [Building and Running the Application](https://github.com/caleb765landis/Capstone.git#Building-and-Running-the-Application)
+- [Resources and Acknowledgements](https://github.com/caleb765landis/Capstone.git#Resources-and-Acknowledgements)
 
 ## Features
 _Collectathon_ is a video game library management system that helps users organize video games into lists of different categories.
 
 ### Explore
 Users can browse the explore page to see a list of 50 of the highest rated video games from igdb.com. They can also search for specific games in this website's database as well.
-![Explore](./Screenshots/Explore)
+
+![Explore](./Screenshots/Explore.png)
 
 ### Game Info
 After choosing a game to explore, users can see some general information in the _About_ view such as release date, genre, platform, and a short description about the game. When navigating to the _Tags_ view, users can tag games by toggling which lists the game should be added to.
-![About the Game](./Screenshots/Game_About)
-![Game Tags](./Screenshots/Game_Tags)
+
+![About the Game](./Screenshots/Game_About.png)
+![Game Tags](./Screenshots/Game_Tags.png)
 
 ### Lists
 The _Lists_ view organizes corresponding tagged games into four categories: _Collection, Completed, Wish List, and Backlog_. 
-![Lists](./Screenshots/Lists)
-![Tagged Games](./Screenshots/Tagged_Games)
+
+![Lists](./Screenshots/Lists.png)
+![Tagged Games](./Screenshots/Tagged_Games.png)
 
 ### Profile
 The _Profile_ view keeps track of how many games are in each list.
-![Profile](./Screenshots/Profile)
+
+![Profile](./Screenshots/Profile.png)
 
 ### Future Additions
 The future of _Collectathon_ will turn the app into more of a social platform where users can share their video game collections and reviews of games they have played. More features that will be added include: 
@@ -62,6 +66,7 @@ Another hurdle when developing _Collectathon_ was figuring out how to get inform
 My project still required me to store some of my own data. Vapor uses an object relational mapping ORM framework for Swift called _Fluent_. This was beneficial because I could use Swift's strong type system to use object-oriented models, then I could use Fluent to convert those objects into relational data. Fluent has four officially supported database drivers; I chose to use _MongoDB_ because I wanted to learn how to use a schemaless NoSQL database since I had only used relational databases before. 
 
 I ran the MongoDB database locally through a server in a _Docker_ container. The database currently stores three models: _Tag, TaggedGame,_ and _User_. These models have been designed to work with more models such as _TimeLog_ and _Review_ for when these features get added in the future. This database follows a fully normalized design, which is shown in the Entity Relation Diagram Below.
+
 ![ER Diagram](./Screenshots/ER_Diagram.png)
 
 ## Dependencies
