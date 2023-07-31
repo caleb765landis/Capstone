@@ -12,11 +12,11 @@ I believe I was able to accomplish these goals successfully. Not only did I demo
 If you want to skip to how to run the application, follow the table of contents to the _Building and Running the Application_ sections.
 
 ## Table of Contents
-- [Features](https://github.com/caleb765landis/Capstone.git#Features)
-- [Technologies Used](https://github.com/caleb765landis/Capstone.git#Technologies-Used)
-- [Building and Running the Application](https://github.com/caleb765landis/Capstone.git#Building-and-Running-the-Application)
-- [Resources and Acknowledgements](https://github.com/caleb765landis/Capstone.git#Resources-and-Acknowledgements)
-- [Other Tools](https://github.com/caleb765landis/Capstone.git#Other-Tools)
+- [Features](https://github.com/caleb765landis/Capstone.git#features)
+- [Technologies Used](https://github.com/caleb765landis/Capstone.git#technologies-used)
+- [Building and Running the Application](https://github.com/caleb765landis/Capstone.git#building-and-running-the-application)
+- [Resources and Acknowledgements](https://github.com/caleb765landis/Capstone.git#resources-and-acknowledgements)
+- [Other Tools](https://github.com/caleb765landis/Capstone.git#other-tools)
 
 ## Features
 _Collectathon_ is a video game library management system that helps users organize video games into lists of different categories.
@@ -96,7 +96,7 @@ Navigate to the Client-Side directory and open the project in XCode. The followi
 The app was tested locally using an iPhone 14 Pro simulator. In XCode, set the target device to an iPhone 14 Pro or newer device. Open Utilities.swift and comment out line 46 which is used for running the app on an actual iPhone instead of in a simulator. Uncomment line 49, which will connect the backend API to the localhost address. Finally, you can click the run button to build and run the app on the simulator.
 
 #### On an iPhone
-The app was tested externally using an iPhone XR. Connect your phone to your computer via USB, then in XCode, set the target device to the one you connected. Open Utilities.swift and change part of the string in line 46 from ```10.0.0.134``` to the IP address your computer is using.Finally, you can click the run button to build, install, and run the app on your phone.
+The app was tested externally using an iPhone XR. Connect your phone to your computer via USB, then in XCode, set the target device to the one you connected. Open Utilities.swift and change part of the string in line 46 from ```10.0.0.134``` to the IP address your computer is using. Finally, you can click the run button to build, install, and run the app on your phone.
 
 ## Resources and Acknowledgements
 - [Vapor Docs](https://docs.vapor.codes/) - Great documentation for installing and learning Vapor.
