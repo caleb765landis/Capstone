@@ -9,14 +9,14 @@ For my 2023 senior capstone project at Indiana University Purdue University Indi
 
 I believe I was able to accomplish these goals successfully. Not only did I demonstrate my software engineering skills, I created an application that solves a real-world problem. I enjoyed developing and using this application, so in the future I will continue to add features to make the app even more helpful for me. The following sections will describe what the application does, how I was able to develop it, and how you can run it. 
 
-If you want to skip to how to run the application, follow the table of contents to the _Dependencies_ and _Building and Running the Application_ sections.
+If you want to skip to how to run the application, follow the table of contents to the _Building and Running the Application_ sections.
 
 ## Table of Contents
 - [Features](https://github.com/caleb765landis/Capstone.git#Features)
 - [Technologies Used](https://github.com/caleb765landis/Capstone.git#Technologies-Used)
-- [Dependencies](https://github.com/caleb765landis/Capstone.git#Dependencies)
 - [Building and Running the Application](https://github.com/caleb765landis/Capstone.git#Building-and-Running-the-Application)
 - [Resources and Acknowledgements](https://github.com/caleb765landis/Capstone.git#Resources-and-Acknowledgements)
+- [Other Tools](https://github.com/caleb765landis/Capstone.git#Other-Tools)
 
 ## Features
 _Collectathon_ is a video game library management system that helps users organize video games into lists of different categories.
@@ -69,12 +69,50 @@ I ran the MongoDB database locally through a server in a _Docker_ container. The
 
 ![ER Diagram](./Screenshots/ER_Diagram.png)
 
-## Dependencies
-- mongodb-vapor - A MongoDB official Swift client with Vapor integration.
-
 ## Building and Running the Application
+The app was written using Swift 5.9 and XCode 15. I have only tested and ran the application using MacOS and iOS. The backend will run on MacOS 12+, using [Vapor 4](https://docs.vapor.codes/install/macos/) for the server and Docker 20+ to run the MongoDB image. The client-side will run the iOS app on version 16.2 and up.
+
+### 1. Start a MongoDB server instance.
+The easiest way I found to use MongoDB was locally on my MacBook using Docker. Make sure you have Docker installed on your device, then navigate to the Server-Side directory in your terminal. The following command will run a new container named mongo and automatically download the mongo image if it is not already present on your computer:
+
+```sh
+docker run --name mongo \ 
+	-e MONGO_INITDB_DATABASE=vapor \ 
+	-p 27017:27017 -d mongo
+```
+To make sure the container is running, enter this command: ```docker ps```.
+If you want to pause running the MongoDB server in the Docker container, enter: ```docker pause mongo```.
+Use ```docker restart mongo``` to start the server back up after pausing.
+
+### 2. Build and run the Vapor server.
+Stay in the Server-Side directory to start the backend Vapor server. Run ```swift run```, which will also load starting data into MongoDB upon the first time using the database.
+
+### 3. Build and open the iOS app.
+Navigate to the Client-Side directory and open the project in XCode. The following image can be used as a reference for which lines to edit in the Utilities.swift file to connect to the backend server correctly depending on how you are running the app.
+
+![URL](./Screenshots/URL.png)
+
+#### Locally on a Simulator
+The app was tested locally using an iPhone 14 Pro simulator. In XCode, set the target device to an iPhone 14 Pro or newer device. Open Utilities.swift and comment out line 46 which is used for running the app on an actual iPhone instead of in a simulator. Uncomment line 49, which will connect the backend API to the localhost address. Finally, you can click the run button to build and run the app on the simulator.
+
+#### On an iPhone
+The app was tested externally using an iPhone XR. Connect your phone to your computer via USB, then in XCode, set the target device to the one you connected. Open Utilities.swift and change part of the string in line 46 from ```10.0.0.134``` to the IP address your computer is using.Finally, you can click the run button to build, install, and run the app on your phone.
 
 ## Resources and Acknowledgements
+- [Vapor Docs](https://docs.vapor.codes/) - Great documentation for installing and learning Vapor.
+- [An article by Kaitlin Mahar](https://www.mongodb.com/developer/code-examples/swift/full-stack-swift/) - I got my idea to use Vapor as my backend from this article. I also used the example project from this article as a reference for modeling much of how I should design a full-stack iOS app.
+- [Mikaela Caron's YouTube Series](https://www.youtube.com/playlist?list=PLMRqhzcHGw1Z7xNnqS_yUNm1k9dvq-HbM) - Kaitlin Mahar's project was heavily influenced by this video series, which in turn heavily influenced the design of my project.
+- [Kodeco](https://www.kodeco.com/books/server-side-swift-with-vapor/v3.0/chapters/1-introduction) - Great resource for learning how to use async/await as well as API controllers in Vapor.
+- [IGDB API Docs](https://api-docs.igdb.com) - Great documentation for IGDB's database API.
+
+### Other Tools
+- XCode - IDE for writing and building Swift code
+- GitHub - Git version control
+- Postman - Testing API endpoints
+- Docker - MongoDB server environment container
+- Whimsical - Wireframe design
+- Mermaid Live Editor - ER diagram creation
+- Dillinger - Markdown editor
 
 
 
