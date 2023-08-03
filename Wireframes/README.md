@@ -1,0 +1,3 @@
+# Wireframes
+
+This directory contains wireframe images for my initial design concepts of the app. Due to time constraints, I was obviously not able to implement all the features shown in these images. Designing the wireframes served as a way to conceptualize my ideas for how certain features will work with each other, specifically organizing games based on tags and how to display this data. In the future, I would still like to implement many of these designs, as the current designs show a minimum viable product as a proof of concept.
